@@ -1,0 +1,4 @@
+user_id,exposure_date,campaign_id,platform
+abc123,2024-04-01,CAMP001,TV
+def333,2024-04-02,CAMP002,TV
+ghi567,2024-04-03,CAMP003,TV

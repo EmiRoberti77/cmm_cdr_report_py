@@ -32,12 +32,18 @@ gcloud services enable bigquery.googleapis.com
 ### 2. ✅ Create Datasets for Each Provider
 
 ```bash
-bq mk --dataset meta_publisher.cmm_data
-bq mk --dataset google_publisher.cmm_data
-bq mk --dataset tv_publisher.cmm_data
+bq mk --dataset <project_name>:meta_publisher_cmm_data
+bq mk --dataset <project_name>:google_publisher_cmm_data
+bq mk --dataset <project_name>tv_publisher_cmm_data
 ```
 
----
+in my case
+
+```bash
+bq mk --dataset emi-dev-env-2:meta_publisher_cmm_data
+bq mk --dataset emi-dev-env-2:google_publisher_cmm_data
+bq mk --dataset emi-dev-env-2:tv_publisher_cmm_data
+```
 
 ### 3. 🧪 Upload Sample Data
 
@@ -53,7 +59,15 @@ ghi789,2024-04-03,CAMP001,Meta
 Upload to BigQuery:
 
 ```bash
-bq load --autodetect --source_format=CSV meta_publisher.cmm_data.meta_table meta_data.csv
+bq load --autodetect --source_format=CSV emi-dev-env-2:meta_publisher_cmm_data.meta_data ./csv/meta_data.csv
+Upload complete.
+Waiting on bqjob_r275f84d5fb117d63_00000196a0d67656_1 ... (1s) Current status: DONE
+bq load --autodetect --source_format=CSV emi-dev-env-2:google_publisher_cmm_data.google_data ./csv/google_data.csv
+Upload complete.
+Waiting on bqjob_r129e8285e018b03e_00000196a0d81667_1 ... (1s) Current status: DONE
+bq load --autodetect --source_format=CSV emi-dev-env-2:tv_publisher_cmm_data.tv_data ./csv/tv_data.csv
+Upload complete.
+Waiting on bqjob_r4e87b2fd549a2f15_00000196a0d8e711_1 ... (1s) Current status: DONE
 ```
 
 Repeat for `google_publisher` and `tv_publisher` using similar data but different user_ids (simulate overlap).
@@ -137,6 +151,7 @@ Add output configuration in the clean room policy to restrict access and share o
 ## 🔐 Privacy Enforcement
 
 Data Clean Rooms enforce:
+
 - No raw row access
 - Minimum aggregation thresholds (e.g., >50 rows)
 - Query auditing
