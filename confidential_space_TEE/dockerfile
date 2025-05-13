@@ -1,10 +1,13 @@
-FROM gcr.io/confidential-space-images/nodejs:20
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
+COPY emi-gcp-key.json ./
 RUN npm install
 
 COPY . .
+
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/emi-gcp-key.json
 
 CMD ["node", "dist/index.js"]

@@ -1,0 +1,1 @@
+podman push gcr.io/emi-dev-env-2/cmm-compute

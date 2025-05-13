@@ -12,3 +12,10 @@
                    ↓ Writes Results + Token
 
         GCS Bucket (cmm_reports_out)
+
+run podman
+
+```bash
+podman machine init
+podman machine start
+```
