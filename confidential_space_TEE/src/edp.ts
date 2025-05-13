@@ -61,7 +61,7 @@ async function main() {
       console.log('saved local file', targetFileName, encReport);
 
       try {
-        await file.save(jsonReport);
+        //await file.save(jsonReport);
         console.log(`${edp}-to-GCP`, targetFileName, encReport);
         await storage.bucket(BUCKET_NAME).upload(encReport);
       } catch (err: any) {
