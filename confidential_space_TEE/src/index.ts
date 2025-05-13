@@ -1,8 +1,8 @@
-import { Storage } from '@google-cloud/storage';
-import axios from 'axios';
+import { Storage } from "@google-cloud/storage";
+import axios from "axios";
 
-const IN_BUCKET_NAME = 'cmm_reports';
-const OUT_BUCKET_NAME = 'cmm_reports_out';
+const IN_BUCKET_NAME = "cmm_reports";
+const OUT_BUCKET_NAME = "cmm_reports_out";
 const storage = new Storage();
 
 async function downloadReports(bucketName: string) {
@@ -31,23 +31,23 @@ async function saveReport(bucketName: string, filename: string, data: any) {
 
 async function getAttestationToken() {
   const response = await axios.get(
-    'http://metadata.google.internal/computeMetadata/v1/instance/attestation-token',
-    { headers: { 'Metadata-Flavor': 'Google' } }
+    "http://metadata.google.internal/computeMetadata/v1/instance/attestation-token",
+    { headers: { "Metadata-Flavor": "Google" } }
   );
   return response.data;
 }
 
 (async () => {
-  console.log('Downloading reports');
+  console.log("Downloading reports");
   const reports = await downloadReports(IN_BUCKET_NAME);
 
-  console.log('Computing reports');
-  const result = computeCmmMetrics(reports);
+  console.log("Computing reports");
+  const result: any = computeCmmMetrics(reports);
 
-  console.log('Fetching attestation token');
+  console.log("Fetching attestation token");
   const token = await getAttestationToken();
   result.attestationToken = token;
 
-  console.log('Saving computed reports');
-  await saveReport(OUT_BUCKET_NAME, 'final_cmm_report.json', result);
+  console.log("Saving computed reports");
+  await saveReport(OUT_BUCKET_NAME, "final_cmm_report.json", result);
 })();
