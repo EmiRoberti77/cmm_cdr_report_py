@@ -1,0 +1,1 @@
+gcloud data-cleanrooms queries submit   --cleanroom=cmm_cleanroom   --location=us-central1   --query-file=aggregate_query.sql

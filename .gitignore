@@ -1,3 +1,5 @@
 venv
 emi-gcp-key.json
 __pycache__
+node_modules
+dist

@@ -1,0 +1,1 @@
+gcloud data-cleanrooms cleanrooms create cmm_cleanroom   --location=us-central1   --config-from-file=cleanroom_config.json

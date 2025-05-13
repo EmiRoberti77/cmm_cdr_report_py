@@ -1,0 +1,21 @@
+{
+  "displayName": "CMM Clean Room",
+  "partnerConfig": {
+    "partners": [
+      {
+        "displayName": "Meta",
+        "datasets": ["projects/emi-dev-env-2/datasets/meta_publisher_cmm_data"]
+      },
+      {
+        "displayName": "Google",
+        "datasets": [
+          "projects/emi-dev-env-2/datasets/google_publisher_cmm_data"
+        ]
+      },
+      {
+        "displayName": "TV",
+        "datasets": ["projects/emi-dev-env-2/datasets/tv_publisher_cmm_data"]
+      }
+    ]
+  }
+}
