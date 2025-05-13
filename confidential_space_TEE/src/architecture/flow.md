@@ -50,6 +50,8 @@ v
 
 - Workload decrypts data, processes it, and outputs securely.
 
+## deployemt structure
+
 [ Confidential VM (AMD SEV-SNP) ]
 |
 [ Confidential Space Runtime ]
@@ -57,3 +59,34 @@ v
 [ Your Private Container Image (based on gcr.io/confidential-space-images/nodejs:20) ]
 |
 [ Your App Logic: Fetch GCS, Compute, KMS Access, etc. ]
+
+## list keys in the project
+
+```bash
+gcloud kms keys list --location=global --keyring=cmm-key-ring --project=emi-dev-env-2
+```
+
+- Listed 0 items.
+
+## create key
+
+```bash
+gcloud kms keys create cmm-key \
+--location=global \
+ --keyring=cmm-key-ring \
+ --purpose=encryption \
+ --project=emi-dev-env-2
+```
+
+## check for key again after creating key
+
+```bash
+gcloud kms keys list --location=global --keyring=cmm-key-ring --project=emi-dev-env-2
+```
+
+- output key is now created
+
+```bash
+NAME PURPOSE ALGORITHM PROTECTION_LEVEL LABELS PRIMARY_ID PRIMARY_STATE
+projects/emi-dev-env-2/locations/global/keyRings/cmm-key-ring/cryptoKeys/cmm-key ENCRYPT_DECRYPT GOOGLE_SYMMETRIC_ENCRYPTION SOFTWARE 1 ENABLED
+```

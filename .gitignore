@@ -3,3 +3,9 @@ emi-gcp-key.json
 __pycache__
 node_modules
 dist
+Google_report.enc
+Google_report.json
+Meta_report.json
+Meta_report.enc
+TV_report.json
+TV_report.enc
